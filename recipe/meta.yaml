@@ -12,9 +12,11 @@ source:
       - remove-opencl.patch
       # https://github.com/dartsim/dart/pull/1872
       - 001-pr-1872.patch
+      # https://github.com/dartsim/dart/pull/1874
+      - 002-pr-1874.patch
 
 build:
-  number: 9
+  number: 11
 
 outputs:
   - name: dartsim-cpp
