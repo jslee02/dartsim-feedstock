@@ -10,9 +10,11 @@ source:
     sha256: eb89cc01f4f48c399b055d462d8ecd2a3f846f825a35ffc67f259186b362e136
     patches:
       - remove-opencl.patch
+      # https://github.com/dartsim/dart/pull/1872
+      - 001-pr-1872.patch
 
 build:
-  number: 7
+  number: 10
 
 outputs:
   - name: dartsim-cpp
@@ -37,9 +39,9 @@ outputs:
         - ninja                  # [win]
         - perl                   # [win]
         - pkg-config
-        - python                                 # [build_platform != target_platform and backend == "python3"]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform and backend == "python3"]
-        - numpy                                  # [build_platform != target_platform and backend == "python3"]
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - numpy                                  # [build_platform != target_platform]
       host:
         - assimp
         - bullet-cpp
@@ -78,7 +80,6 @@ outputs:
     script: bld_py.bat   # [win]
     build:
       skip: true  # [linux and not x86_64]
-      skip: true  # [osx and arm64]
       skip: true  # [win]
     requirements:
       build:
@@ -98,9 +99,9 @@ outputs:
         - ninja                  # [win]
         - perl                   # [win]
         - pkg-config
-        - cross-python_{{ target_platform }}  # [build_platform != target_platform and backend == "python3"]
-        - numpy                               # [build_platform != target_platform and backend == "python3"]
-        - python                              # [build_platform != target_platform and backend == "python3"]
+        - cross-python_{{ target_platform }}  # [build_platform != target_platform]
+        - numpy                               # [build_platform != target_platform]
+        - python                              # [build_platform != target_platform]
       host:
         - {{ pin_subpackage('dartsim-cpp', exact=True) }}
         # C++ deps
@@ -142,13 +143,13 @@ outputs:
       run:
         - {{ pin_subpackage('dartsim-cpp', exact=True) }}
         - {{ pin_subpackage('dartpy', exact=True) }}  # [linux and x86_64]
-        - {{ pin_subpackage('dartpy', exact=True) }}  # [osx and x86_64]
+        - {{ pin_subpackage('dartpy', exact=True) }}  # [osx]
         - python
         - numpy
     test:
       imports:
         - dartpy  # [linux and x86_64]
-        - dartpy  # [osx and x86_64]
+        - dartpy  # [osx]
       commands:
         - test -f $PREFIX/lib/libdart.dylib  # [osx]
         - test -f $PREFIX/lib/libdart.so  # [linux]

@@ -11,7 +11,7 @@ c_stdlib:
 c_stdlib_version:
 - '2.17'
 cdt_name:
-- cos7
+- conda
 channel_sources:
 - conda-forge
 channel_targets:
@@ -31,13 +31,14 @@ ipopt:
 libboost_devel:
 - '1.86'
 libode:
-- 0.16.2
+- 0.16.5
 nlopt:
 - '2.8'
 numpy:
 - '1.22'
 - '1.23'
 - '1.26'
+- '2'
 - '1.22'
 pin_run_as_build:
   python:
@@ -47,6 +48,7 @@ python:
 - 3.10.* *_cpython
 - 3.11.* *_cpython
 - 3.12.* *_cpython
+- 3.13.* *_cp313
 - 3.9.* *_cpython
 spdlog:
 - '1.14'
@@ -59,7 +61,5 @@ urdfdom:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - c_stdlib_version
-  - cdt_name
 - - python
   - numpy
