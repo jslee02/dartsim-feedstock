@@ -1,5 +1,5 @@
 {% set name = "dartsim" %}
-{% set version = "6.14.5" %}
+{% set version = "6.15.0" %}
 
 package:
   name: {{ name }}
@@ -7,19 +7,15 @@ package:
 
 source:
   - url: https://github.com/dartsim/dart/archive/v{{ version }}.tar.gz
-    sha256: eb89cc01f4f48c399b055d462d8ecd2a3f846f825a35ffc67f259186b362e136
-    patches:
-      - remove-opencl.patch
-      # https://github.com/dartsim/dart/pull/1872
-      - 001-pr-1872.patch
+    sha256: bbf954e283f464f6d0a8a5ab43ce92fd49ced357ccdd986c7cb4c29152df8692
 
 build:
-  number: 10
+  number: 1
 
 outputs:
   - name: dartsim-cpp
     script: build_cpp.sh  # [unix]
-    script: bld_cpp.bat   # [win]
+    script: bld_cpp.bat  # [win]
     build:
       run_exports:
         - {{ pin_subpackage('dartsim-cpp', max_pin='x.x') }}
@@ -74,10 +70,12 @@ outputs:
         - if not exist %LIBRARY_LIB%\\dart.lib exit 1  # [win]
         - if not exist %PREFIX%\\Library\\share\\dart\\cmake\\dart_collision-odeTargets.cmake exit 1  # [win]
         - if not exist %PREFIX%\\Library\\share\\dart\\cmake\\dart_collision-bulletTargets.cmake exit 1  # [win]
+      downstreams:
+        - gz-physics8
 
   - name: dartpy
     script: build_py.sh  # [unix]
-    script: bld_py.bat   # [win]
+    script: bld_py.bat  # [win]
     build:
       skip: true  # [linux and not x86_64]
       skip: true  # [win]
