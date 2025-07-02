@@ -25,9 +25,9 @@ cxx_compiler:
 cxx_compiler_version:
 - '18'
 fmt:
-- '11'
+- '11.2'
 ipopt:
-- 3.14.16
+- 3.14.17
 libboost_devel:
 - '1.86'
 libode:
@@ -35,13 +35,9 @@ libode:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 nlopt:
-- '2.9'
+- '2.10'
 numpy:
-- '1.22'
-- '1.23'
-- '1.26'
 - '2'
-- '1.22'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -53,15 +49,13 @@ python:
 - 3.13.* *_cp313
 - 3.9.* *_cpython
 spdlog:
-- '1.14'
+- '1.15'
 target_platform:
 - osx-64
 tinyxml2:
-- '10'
+- '11.0'
 urdfdom:
 - '4.0'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
-- - python
-  - numpy
