@@ -9,7 +9,7 @@ bullet_cpp:
 c_compiler:
 - clang
 c_compiler_version:
-- '18'
+- '19'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
@@ -23,15 +23,15 @@ console_bridge:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '18'
+- '19'
 fmt:
-- '11.2'
+- '12.0'
 ipopt:
-- 3.14.17
+- 3.14.19
 libboost_devel:
-- '1.86'
+- '1.88'
 libode:
-- 0.16.5
+- 0.16.6
 macos_machine:
 - x86_64-apple-darwin13.4.0
 nlopt:
@@ -47,9 +47,9 @@ python:
 - 3.11.* *_cpython
 - 3.12.* *_cpython
 - 3.13.* *_cp313
-- 3.9.* *_cpython
+- 3.14.* *_cp314
 spdlog:
-- '1.15'
+- '1.16'
 target_platform:
 - osx-64
 tinyxml2:
