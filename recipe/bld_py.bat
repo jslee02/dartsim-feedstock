@@ -11,6 +11,8 @@ set "DARTPY_BUILD_TEMP=%USERPROFILE%\\AppData\\Local\\Temp\\dartpy_build"
 :: Use conda-forge's pybind11 package instead of CMake FetchContent.
 set "CMAKE_ARGS=%CMAKE_ARGS% -DDART_MSVC_DEFAULT_OPTIONS=ON"
 set "CMAKE_ARGS=%CMAKE_ARGS% -DDART_USE_SYSTEM_PYBIND11=ON"
+:: setup.py defaults to bundled ImGui fetched from GitHub; use the host package.
+set "CMAKE_ARGS=%CMAKE_ARGS% -DDART_USE_SYSTEM_IMGUI=ON"
 
 :: Compiler flags to reduce memory usage while keeping Release optimization:
 :: - /Zm2000     => increase compiler heap (change if needed)

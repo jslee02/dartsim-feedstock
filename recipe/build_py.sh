@@ -36,7 +36,8 @@ fi
 
 # Install the Python package
 export CMAKE_GENERATOR=Ninja
-export CMAKE_ARGS="${CMAKE_ARGS:-} -DDART_USE_SYSTEM_PYBIND11=ON -DPYBIND11_FINDPYTHON=OFF -DBUILD_TESTING=OFF"
+# setup.py defaults to bundled ImGui fetched from GitHub; use the host package.
+export CMAKE_ARGS="${CMAKE_ARGS:-} -DDART_USE_SYSTEM_PYBIND11=ON -DPYBIND11_FINDPYTHON=OFF -DDART_USE_SYSTEM_IMGUI=ON -DBUILD_TESTING=OFF"
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" == "1" ]]; then
   python -m pip install . -vv
 else
