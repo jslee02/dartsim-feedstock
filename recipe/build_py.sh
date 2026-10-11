@@ -36,8 +36,10 @@ fi
 
 # Install the Python package
 export CMAKE_GENERATOR=Ninja
-# setup.py defaults to bundled ImGui fetched from GitHub; use the host package.
-export CMAKE_ARGS="${CMAKE_ARGS:-} -DDART_USE_SYSTEM_PYBIND11=ON -DPYBIND11_FINDPYTHON=OFF -DDART_USE_SYSTEM_IMGUI=ON -DBUILD_TESTING=OFF"
+# Use conda-forge's nanobind and ImGui: setup.py defaults to bundled ImGui
+# fetched from GitHub. Pass nanobind's CMake directory explicitly because the
+# isolated cross build's Python cannot import nanobind.
+export CMAKE_ARGS="${CMAKE_ARGS:-} -DDART_USE_SYSTEM_NANOBIND=ON -Dnanobind_DIR=${SP_DIR}/nanobind/cmake -DDART_USE_SYSTEM_IMGUI=ON -DBUILD_TESTING=OFF"
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-0}" == "1" ]]; then
   python -m pip install . -vv
 else

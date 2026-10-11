@@ -8,11 +8,13 @@ if exist build rmdir /s /q build
 set "DARTPY_BUILD_TEMP=%USERPROFILE%\\AppData\\Local\\Temp\\dartpy_build"
 
 :: Avoid DART's MSVC release flags that add /Zi and /GL (big memory spikes).
-:: Use conda-forge's pybind11 package instead of CMake FetchContent.
+:: Use conda-forge's nanobind and ImGui packages instead of downloads.
+:: Unity builds share MSVC's header parsing across sources (DART's CI measured
+:: dartpy objects building 4.5x faster).
 set "CMAKE_ARGS=%CMAKE_ARGS% -DDART_MSVC_DEFAULT_OPTIONS=ON"
-set "CMAKE_ARGS=%CMAKE_ARGS% -DDART_USE_SYSTEM_PYBIND11=ON"
-:: setup.py defaults to bundled ImGui fetched from GitHub; use the host package.
+set "CMAKE_ARGS=%CMAKE_ARGS% -DDART_USE_SYSTEM_NANOBIND=ON -Dnanobind_DIR=%SP_DIR:\=/%/nanobind/cmake"
 set "CMAKE_ARGS=%CMAKE_ARGS% -DDART_USE_SYSTEM_IMGUI=ON"
+set "CMAKE_ARGS=%CMAKE_ARGS% -DCMAKE_UNITY_BUILD=ON"
 
 :: Compiler flags to reduce memory usage while keeping Release optimization:
 :: - /Zm2000     => increase compiler heap (change if needed)

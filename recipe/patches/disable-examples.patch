@@ -1,0 +1,12 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -562,7 +562,7 @@
+ 
+   # Add example subdirectories and an "examples" target.
+   if(MSVC)
+-    add_subdirectory(examples)
++    # add_subdirectory(examples)
+   else()
+     add_subdirectory(examples EXCLUDE_FROM_ALL)
+     get_property(examples GLOBAL PROPERTY DART_EXAMPLES)

@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: dartsim
-  version: "6.20.0"
+  version: "6.21.0"
   build_number: 0
 
 recipe:
@@ -15,14 +15,8 @@ source:
     patches:
       - if: win
         then:
-          # Disable tutorials and examples to save build time
-          - patches/disable-tutorials-examples.patch
-          # Avoid -A x64 for Ninja/NMake when building dartpy on Windows
-          - patches/fix-setup-msvc-ninja.patch
-          - patches/dartpy-build-temp-env.patch
-          # Remove once an upstream release exports the MSVC conformance options
-          # required by DART 6's public template headers.
-          - patches/export-msvc-two-phase-option.patch
+          # Skip the C++ examples to save build time
+          - patches/disable-examples.patch
 build:
   number: ${{ build_number }}
 
@@ -140,7 +134,7 @@ outputs:
         # Python deps
         - numpy
         - pip
-        - pybind11 >=3.0.3
+        - nanobind >=3.1
         - python
         - setuptools
         - wheel
