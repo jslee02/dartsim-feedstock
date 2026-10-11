@@ -29,5 +29,6 @@ if errorlevel 1 exit 1
 ninja install
 if errorlevel 1 exit 1
 
-ctest --output-on-failure
+:: Skip DART's long measurement sweeps, as its FreeBSD CI does.
+ctest --output-on-failure --label-exclude long-measurement
 if errorlevel 1 exit 1
